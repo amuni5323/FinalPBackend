@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true })); // Allow form data parsing
 app.use(bodyParser.json({ limit: '50mb' }));  // Set a larger limit if needed
  // Ensures proper JSON parsing
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? "https://yourfrontend.com" : "http://localhost:5173",
+  origin: process.env.NODE_ENV === 'production' ? "https://yourfrontend.com" : "final-p-frontend-4bpj.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
