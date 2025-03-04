@@ -1,8 +1,8 @@
-// controllers/userController.js
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const {sendVerificationEmail} = require('../utils/sendEmail');
+const { sendVerificationEmail } = require('../utils/sendEmail'); // Added the missing import
+
 console.log("userController.js is loaded");
 
 const registerUser = async (req, res) => {
@@ -29,7 +29,7 @@ const registerUser = async (req, res) => {
         const verificationToken = jwt.sign(
             { userId: newUser._id },
             process.env.JWT_SECRET,
-            { expiresIn: '1h' } 
+            { expiresIn: '1h' }
         );
 
         // Send verification email
@@ -42,43 +42,6 @@ const registerUser = async (req, res) => {
     }
 };
 
-const verifyEmail = async (req, res) => {
-    const { token } = req.params;
-
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decoded.userId);
-
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid or expired verification link.' });
-        }
-
-        user.isVerified = true;
-        await user.save();
-
-        res.send(`
-            <html>
-            <head>
-                <meta http-equiv="refresh" content="5;url=https://final-p-frontend-vkim.vercel.app/login" />
-                <title>Email Verified</title>
-                <style>
-                    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-                    .message { color: green; font-size: 18px; }
-                </style>
-            </head>
-            <body>
-                <h2 class="message">✅ Email Verified Successfully!</h2>
-                <p>You will be redirected to the login page in 5 seconds...</p>
-                <p>If not redirected, <a href="https://final-p-frontend-vkim.vercel.app/login">click here</a>.</p>
-            </body>
-            </html>
-        `); } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
-
-// User login
 // User login
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -139,7 +102,6 @@ const updateProfile = async (req, res) => {
 // ✅ Correctly exporting all functions
 module.exports = {
     registerUser,
-    verifyEmail,  // <-- This was missing in your export
     loginUser,
     updateProfile
 };
