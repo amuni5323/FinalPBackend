@@ -6,7 +6,7 @@ const { verifyEmail } = require('../controllers/authController'); // Adjust path
 
 // Register user
 router.post('/register', userController.registerUser);
-router.get('/verify/:token', userController.verifyEmail);
+// router.get('/verify/:token', userController.verifyEmail);
 // Login user
 router.post('/login', userController.loginUser);
 router.get('/verify-email/:token', verifyEmail);
