@@ -35,13 +35,18 @@ app.use(express.urlencoded({ extended: true })); // Allow form data parsing
 // 🔹 **Middleware**
 app.use(bodyParser.json({ limit: '50mb' }));  // Set a larger limit if needed
  // Ensures proper JSON parsing
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? "https://yourfrontend.com" : "final-p-frontend-4bpj.vercel.app",
+ app.use(cors({
+  origin: [
+    "https://final-p-frontend-oafp.vercel.app", 
+    "https://yourfrontend.com"
+  ], 
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
+
 // 🔹 **Routes**
+
 app.use('/api/admin', adminRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/jobs", jobRoutes);
