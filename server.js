@@ -23,6 +23,7 @@ const bookRoutes = require("./routes/bookRoutes");
 const eventReminderSchedule = require('./utils/eventReminderScheduler');  // Ensure this line is added to run the cron jobs
 const imageRouter =  require("./routes/imageRoutes")
 const booksRoutes = require('./routes/booksRoutes');
+const authRoutes = require('./routes/auth'); 
 console.log("governmentOfficeController.js is loaded");
 
 dotenv.config();
@@ -55,6 +56,7 @@ app.use("/api", bookRoutes);  // Book Routes
 app.use('/uploads', express.static('uploads'));
 app.use("/api", imageRouter)
 app.use('/api', booksRoutes);
+app.use('/api/auth', authRoutes);
 // Add more routes as needed
 
 // app.use("/uploads", express.static("uploads"));

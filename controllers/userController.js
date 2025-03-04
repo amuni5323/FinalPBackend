@@ -56,8 +56,23 @@ const verifyEmail = async (req, res) => {
         user.isVerified = true;
         await user.save();
 
-        res.status(200).json({ message: 'Email verified successfully! You can now log in.' });
-    } catch (error) {
+        res.send(`
+            <html>
+            <head>
+                <meta http-equiv="refresh" content="5;url=https://final-p-frontend-vkim.vercel.app/login" />
+                <title>Email Verified</title>
+                <style>
+                    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+                    .message { color: green; font-size: 18px; }
+                </style>
+            </head>
+            <body>
+                <h2 class="message">✅ Email Verified Successfully!</h2>
+                <p>You will be redirected to the login page in 5 seconds...</p>
+                <p>If not redirected, <a href="https://final-p-frontend-vkim.vercel.app/login">click here</a>.</p>
+            </body>
+            </html>
+        `); } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }

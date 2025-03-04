@@ -25,7 +25,8 @@ const sendEmail = (to, subject, htmlContent) => {
 
 // Specific function for verification email
 const sendVerificationEmail = (email, token) => {
-  const verificationLink = `https://final-p-frontend-vkim.vercel.app/api/users/verify/${token}`;
+  const verificationLink = `https://finalpbackend-2.onrender.com/api/auth/verify-email/${token}`;
+
   
   const emailContent = `
     <p>Click the link to verify your email: <a href="${verificationLink}">${verificationLink}</a></p>
