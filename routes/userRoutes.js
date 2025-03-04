@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const { authMiddleware } = require('../middlewares/authMiddleware');
-const { verifyEmail } = require('../controllers/authController'); // Adjust path if needed
+const { verifyEmail } = require('../controllers/userController'); // Adjust path if needed
 
 // Register user
 router.post('/register', userController.registerUser);
