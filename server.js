@@ -35,23 +35,14 @@ app.use(express.urlencoded({ extended: true })); // Allow form data parsing
 // 🔹 **Middleware**
 app.use(bodyParser.json({ limit: '50mb' }));  // Set a larger limit if needed
  // Ensures proper JSON parsing
- app.use(cors({
-  origin: [
-    "https://final-p-frontend-oafp.vercel.app", 
-    "https://yourfrontend.com"
-  ], 
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
+app.use(cors("https://final-p-frontend-vkim.vercel.app"));
 
 // 🔹 **Routes**
-
 app.use('/api/admin', adminRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/events", eventRoutes);
-app.use( hotelRoutes);  // Hotel Routes
+app.use( "/api/hotel",hotelRoutes);  // Hotel Routes
 app.use("/api/hospitals", hospitalRoutes);  // Hospital Routes
 app.use("/api/courts", courtRoutes);  // Court Routes
 app.use("/api/governmentOffices", governmentOfficeRoutes);  // Government Office Routes
@@ -68,10 +59,10 @@ app.use('/api', booksRoutes);
 
 // app.use("/uploads", express.static("uploads"));
 
-app.get("/", (req, res) => {
-  res.send("Hi! The server is working correctly.");
-});
-// { useNewUrlParser: true, useUnifiedTopology: true }
+// app.get("/", (req, res) => {
+//   res.send("Hi! The server is working correctly.");
+// });
+// // { useNewUrlParser: true, useUnifiedTopology: true }
 
 
 
