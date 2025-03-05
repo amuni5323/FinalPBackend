@@ -32,7 +32,6 @@ const app = express();
 // app.use(express.json()); // Ensure JSON parsing
 app.use(express.urlencoded({ extended: true })); // Allow form data parsing
 const subscribeRoute = require('./routes/subscribe');
-app.use('/api/subscribe', subscribeRoute);
 
 // 🔹 **Middleware**
 app.use(bodyParser.json({ limit: '50mb' }));  // Set a larger limit if needed
@@ -42,6 +41,8 @@ app.use(cors("https://final-p-frontend-vkim.vercel.app"));
 // 🔹 **Routes**
 app.use('/api/admin', adminRoutes);
 app.use("/api/users", userRoutes);
+app.use('/api/subscribe', subscribeRoute);
+
 app.use("/api/jobs", jobRoutes);
 app.use("/api/events", eventRoutes);
 app.use( "/api/hotel",hotelRoutes);  // Hotel Routes
