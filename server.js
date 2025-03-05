@@ -31,7 +31,8 @@ const app = express();
 
 // app.use(express.json()); // Ensure JSON parsing
 app.use(express.urlencoded({ extended: true })); // Allow form data parsing
-
+const subscribeRoute = require('./routes/subscribe');
+app.use('/api/subscribe', subscribeRoute);
 
 // 🔹 **Middleware**
 app.use(bodyParser.json({ limit: '50mb' }));  // Set a larger limit if needed
